@@ -17,7 +17,7 @@ developed several tests using selenium in pytest
 
 ### running the tests
 
-run this on your terminal: ```pytest tests```
-if you get any error while running the tests related urllib3, please uninstall it. and than run this: 
+- run this on your terminal: ```pytest tests```
+- if you get any error while running the tests related urllib3, please uninstall it. and than run this: 
 ``` pip install 'urllib3<2.0' ``` and than try to run the tests once again.
-after you running the tests, use this: ```allure serve report```. it will create the tests report for you
+- after you running the tests, use this: ```allure serve report```. it will create the tests report for you
