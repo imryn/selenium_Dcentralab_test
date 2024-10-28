@@ -16,3 +16,11 @@ class HordPage(HordLocator, BasePage):
 
     def check_invisibilty_of_sidebar_wrapper(self):
         self.selenium_helper.invisibility_of_element(self.SIDE_BAR_FIRST_ITEM)
+
+    def move_to_faq_section(self):
+        element = self.selenium_helper.get_list_of_elements(self.FAQ)
+        self.selenium_helper.move_to_element(element[0])
+
+    def get_faq_questions(self):
+        elements = self.selenium_helper.get_list_of_elements(self.FAQ_QUESTIONS)
+        return elements
