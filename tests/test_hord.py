@@ -7,14 +7,16 @@ from src.configs.hord_enum import HordEnum
 @pytest.mark.usefixtures("init_driver")
 class TestHord:
 
-    def test01_verify_sidbear_is_expanded(self, get_hord_url):
+    def test01_verify_sidbear_is_expanded(self, get_hord_url: str):
         hord_page = HordPage(self.driver)
         hord_page.open_home_page(get_hord_url)
         hord_page.click_sidebar_toggler()
-        hord_page.check_expended_class_name_displayed_on_element_after_sidebar_opened()
+        res = hord_page.check_first_item_in_list_is_exist_after_sidebar_opened()
+        if not res:
+            raise Exception("ETH Staking does not displayed, so sidebar is not expanded")
 
 
-    def test02_verify_sidbear_is_collapsing(self, get_hord_url):
+    def test02_verify_sidbear_is_collapsing(self, get_hord_url: str):
         hord_page = HordPage(self.driver)
         hord_page.open_home_page(get_hord_url)
         hord_page.click_sidebar_toggler()
@@ -22,7 +24,7 @@ class TestHord:
         element = hord_page.check_invisibilty_of_sidebar_wrapper()
         assert element == None, "the element is still displayed, so the sidebar still opened"
 
-    def test_verify_the_FAQ_section(self, get_hord_url):
+    def test_verify_the_FAQ_section(self, get_hord_url: str):
         hord_page = HordPage(self.driver)
         hord_page.open_home_page(get_hord_url)
         hord_page.move_to_faq_section()

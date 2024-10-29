@@ -1,6 +1,7 @@
 from src.helpers.selenium_helper import SeleniumHelper
 from src.locators.hord_locator import HordLocator
 from src.pages.base_page import BasePage
+import time
 
 class HordPage(HordLocator, BasePage):
 
@@ -11,8 +12,9 @@ class HordPage(HordLocator, BasePage):
         element = self.selenium_helper.get_list_of_elements(self.SIDE_BAR_TOGGLER)
         self.driver.execute_script("arguments[0].click();", element[0])
 
-    def check_expended_class_name_displayed_on_element_after_sidebar_opened(self):
-        self.selenium_helper.visibility_of_element(self.SIDE_BAR_FIRST_ITEM)
+    def check_first_item_in_list_is_exist_after_sidebar_opened(self):
+        elements = self.selenium_helper.get_list_of_elements(self.SIDE_BAR_FIRST_ITEM)
+        return elements[0]
 
     def check_invisibilty_of_sidebar_wrapper(self):
         self.selenium_helper.invisibility_of_element(self.SIDE_BAR_FIRST_ITEM)

@@ -2,6 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.remote.webelement import WebElement
 
 import time
 
@@ -16,11 +17,11 @@ class SeleniumHelper:
             EC.visibility_of_element_located(locator)
         ).click()
 
-    def visibility_of_element(self, locator):
+    def visibility_of_element(self, locator: str):
         WebDriverWait(self.driver, self.default_timeout).until(
             EC.visibility_of_element_located(locator))
 
-    def invisibility_of_element(self, locator):
+    def invisibility_of_element(self, locator: str):
         WebDriverWait(self.driver, self.default_timeout).until(
             EC.invisibility_of_element(locator))
 
@@ -30,7 +31,7 @@ class SeleniumHelper:
         )
         return elements
 
-    def move_to_element(self, element):
+    def move_to_element(self, element: WebElement):
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
 
